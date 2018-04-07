@@ -1,0 +1,20 @@
+<launch>
+
+<!-- GPS NODE -->
+<node name="gps_node" pkg="gps_info" type="gps_node.py" />
+
+<!-- IMU NODE -->
+<include file="$(find phidgets_imu)/launch/imu.launch" >
+</include>
+
+<!-- VELODYNE NODE -->
+<include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" >
+</include>
+
+<!-- LIDAR NODE -->
+<include file="$(find rplidar_ros)/launch/rplidar.launch" >
+</incude>
+
+<!-- ZED NODE -->
+<include file="$(find zed_wrapper)/launch/zed.launch" >
+</include>
