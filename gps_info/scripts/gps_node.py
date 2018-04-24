@@ -29,15 +29,15 @@ class GPS_Parser(object):
         my_fix.header.stamp = rospy.Time.now()
 
         latitude_degrees = float(line[16:18])
-        latitude_minutes = float(line[18:23])
-        latitude = decimal_degrees(degs=latitude_degrees, mins=latitude_minutes)
-        if (line[24] == 'S'):
+        latitude_minutes = float(line[18:25])
+        latitude = self.decimal_degrees(degs=latitude_degrees, mins=latitude_minutes)
+        if (line[26] == 'S'):
             latitude = -1 * latitude
 
-        longitude_degrees = float(line[26:29])
-        longitude_minutes = float(line[29:34])
-        longitude = decimal_degrees(degs=longitude_degrees, mins=longitude_minutes)
-        if(line[35] == 'W'):
+        longitude_degrees = float(line[28:31])
+        longitude_minutes = float(line[31:38])
+        longitude = self.decimal_degrees(degs=longitude_degrees, mins=longitude_minutes)
+        if(line[39] == 'W'):
             longitude = -1 * longitude
 
         my_fix.latitude = latitude

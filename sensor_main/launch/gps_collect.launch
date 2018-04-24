@@ -1,0 +1,13 @@
+<launch>
+
+<!-- GPS NODE -->
+<node name="gps_node" pkg="gps_info" type="gps_node.py" />
+
+<!-- VELODYNE NODE -->
+<include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" >
+</include>
+
+<!-- Echo Velodyne to filtered -->
+<node name="points_to_filtered" pkg="topic_tools" type="relay" args="velodyne_points filtered_points" />
+
+</launch>

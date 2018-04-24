@@ -3,22 +3,20 @@
 import rospy
 
 from geometry_msgs.msg import PoseStamped
-from geometry_msgs.msg import PoseWithCovariance
-from geometry_msgs.msg import TwistWithCovariance
 from nav_msgs.msg import Odometry
+
+from sensor_msgs.msg import NavSatFix
+
+import message_filters
+from message_filters import ApproximateTimeSychronizer
 
 class Pose_Vel_Node(object):
 
     def __init__(self):
-        rospy.init_node('pos_vel_node')
+        rospy.init_node('affine_node')
 
-        # Info from previous time-step
-        self.prev_t = 0
-        self.prev_x = 0
-        self.prev_y = 0
-
-        self.pose_vel_pub = rospy.Publisher('/pose_and_speed', Odometry, queue_size=10)
-        rospy.Subscriber('/ndt_pose', PoseStamped, self.pose_callback)
+        pose_sub = rospy.Subscriber('/ndt_pose', PoseStamped)
+        gps_sub = rospy.Subscriber 
 
         rospy.spin()
 

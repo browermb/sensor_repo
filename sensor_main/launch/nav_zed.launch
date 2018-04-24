@@ -13,6 +13,9 @@
 <include file="$(find rplidar_ros)/launch/rplidar.launch" >
 </include>
 
+<!-- Object Detection -->
+<node name="obj_node" pkg="sensor_main" type="obj_detect.py" />
+
 <!-- VELODYNE NODE -->
 <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" >
 </include>
@@ -20,12 +23,11 @@
 <!-- Echo Velodyne to filtered -->
 <node name="points_to_filtered" pkg="topic_tools" type="relay" args="velodyne_points filtered_points" />
 
-
-<!-- Object Detection -->
-<node name="obj_node" pkg="sensor_main" type="obj_detect.py" /> 
-
+<!-- ZED NODE -->
+<include file="$(find zed_wrapper)/launch/zed.launch" >
+</include>
 
 <!-- POSE AND VELOCITY NODE -->
-<node name="odom_node" pkg="sensor_main" type="pose_vel.py" />
+<node name="odom_node" pkg="sensor_main" type="velocityZED.py" />
 
 </launch>
